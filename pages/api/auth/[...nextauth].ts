@@ -1,6 +1,6 @@
 import NextAuth from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
-import allowSingleSession from 'nx';
+import allowSingleSession from '@shvmsnju/nx';
 
 export const authOptions = {
   // Configure one or more authentication providers
@@ -14,7 +14,7 @@ export const authOptions = {
   // add callbacks
   callbacks: {
     async jwt({ token, account }: { token: any; account?: any }) {
-      token = allowSingleSession(token, account, 10000);
+      token = allowSingleSession(token, account, 60000, false);
       return token;
     },
 
